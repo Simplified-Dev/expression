@@ -1,6 +1,6 @@
 package dev.sbs.api.expression;
 
-import dev.sbs.api.expression.exception.ExpressionException;
+import dev.sbs.api.expression.exception.InvalidExpressionException;
 
 /**
  * A lightweight stack of primitive {@code double} values backed by a resizable array.
@@ -33,11 +33,11 @@ class ArrayStack {
      * Creates a new stack with the specified initial capacity.
      *
      * @param initialCapacity the initial size of the backing array
-     * @throws ExpressionException if {@code initialCapacity} is less than or equal to zero
+     * @throws InvalidExpressionException if {@code initialCapacity} is less than or equal to zero
      */
     ArrayStack(int initialCapacity) {
         if (initialCapacity <= 0)
-            throw new ExpressionException("Stack's capacity must be positive");
+            throw new InvalidExpressionException("Stack's capacity must be positive");
 
         data = new double[initialCapacity];
         idx = -1;
@@ -63,12 +63,12 @@ class ArrayStack {
      * Returns the value at the top of this stack without removing it.
      *
      * @return the {@code double} value at the top of this stack
-     * @throws ExpressionException if this stack is empty
+     * @throws InvalidExpressionException if this stack is empty
      */
     @SuppressWarnings("unused")
     double peek() {
         if (idx == -1)
-            throw new ExpressionException("Stack is empty");
+            throw new InvalidExpressionException("Stack is empty");
 
         return data[idx];
     }
@@ -77,11 +77,11 @@ class ArrayStack {
      * Removes and returns the value at the top of this stack.
      *
      * @return the {@code double} value that was removed from the top of this stack
-     * @throws ExpressionException if this stack is empty
+     * @throws InvalidExpressionException if this stack is empty
      */
     double pop() {
         if (idx == -1)
-            throw new ExpressionException("Stack is empty");
+            throw new InvalidExpressionException("Stack is empty");
 
         return data[idx--];
     }

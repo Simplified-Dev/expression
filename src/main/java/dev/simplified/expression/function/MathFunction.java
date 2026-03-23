@@ -1,7 +1,7 @@
 package dev.sbs.api.expression.function;
 
 import dev.sbs.api.expression.Expression;
-import dev.sbs.api.expression.exception.ExpressionException;
+import dev.sbs.api.expression.exception.InvalidExpressionException;
 import dev.sbs.api.function.VarargFunction;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
@@ -38,7 +38,7 @@ public abstract class MathFunction implements VarargFunction<Double, Double> {
      * Creates a new function with the given name that takes exactly one argument.
      *
      * @param name the name of the function
-     * @throws ExpressionException if the name is not a valid function name
+     * @throws InvalidExpressionException if the name is not a valid function name
      */
     public MathFunction(@NotNull String name) {
         this(name, 1, 1);
@@ -49,7 +49,7 @@ public abstract class MathFunction implements VarargFunction<Double, Double> {
      *
      * @param name the name of the function
      * @param numArguments the exact number of arguments the function takes
-     * @throws ExpressionException if the name is invalid or if {@code numArguments} is negative
+     * @throws InvalidExpressionException if the name is invalid or if {@code numArguments} is negative
      */
     public MathFunction(@NotNull String name, int numArguments) {
         this(name, numArguments, numArguments);
@@ -62,15 +62,15 @@ public abstract class MathFunction implements VarargFunction<Double, Double> {
      * @param name the name of the function
      * @param minArguments the minimum number of arguments the function takes (must be non-negative)
      * @param maxArguments the maximum number of arguments the function takes (must be {@code >= minArguments})
-     * @throws ExpressionException if the name is invalid, or if {@code minArguments} is negative,
+     * @throws InvalidExpressionException if the name is invalid, or if {@code minArguments} is negative,
      *                             or if {@code minArguments > maxArguments}
      */
     public MathFunction(@NotNull String name, int minArguments, int maxArguments) {
         if (minArguments < 0 || minArguments > maxArguments)
-            throw new ExpressionException("The number of function arguments can not be less than 0 or more than '%s' for '%s'", maxArguments, name);
+            throw new InvalidExpressionException("The number of function arguments can not be less than 0 or more than '%s' for '%s'", maxArguments, name);
 
         if (!isValidFunctionName(name))
-            throw new ExpressionException("The function name '" + name + "' is invalid");
+            throw new InvalidExpressionException("The function name '" + name + "' is invalid");
 
         this.name = name;
         this.minArguments = minArguments;
@@ -116,11 +116,11 @@ public abstract class MathFunction implements VarargFunction<Double, Double> {
      * {@link #getMaxArguments()}. For variable-argument functions, use those two methods instead.
      *
      * @return the fixed number of arguments
-     * @throws ExpressionException if this function accepts a variable number of arguments
+     * @throws InvalidExpressionException if this function accepts a variable number of arguments
      */
     public int getNumArguments() {
         if (this.minArguments != this.maxArguments)
-            throw new ExpressionException("Calling getNumArgument() is not supported for var arg functions, please use getMaxNumArguments() or getMinNumArguments()");
+            throw new InvalidExpressionException("Calling getNumArgument() is not supported for var arg functions, please use getMaxNumArguments() or getMinNumArguments()");
 
         return this.minArguments;
     }

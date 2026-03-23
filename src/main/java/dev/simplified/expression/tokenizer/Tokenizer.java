@@ -1,7 +1,7 @@
 package dev.sbs.api.expression.tokenizer;
 
 import dev.sbs.api.expression.Expression;
-import dev.sbs.api.expression.exception.ExpressionException;
+import dev.sbs.api.expression.exception.InvalidExpressionException;
 import dev.sbs.api.expression.exception.UnknownFunctionException;
 import dev.sbs.api.expression.exception.UnknownOperatorException;
 import dev.sbs.api.expression.function.BuiltinFunction;
@@ -160,7 +160,7 @@ public class Tokenizer {
      * actual next operand.
      *
      * @return the next parsed {@link Token}
-     * @throws ExpressionException if the current character cannot be parsed
+     * @throws InvalidExpressionException if the current character cannot be parsed
      *                            into any recognized token type
      */
     public @NotNull Token nextToken() {
@@ -171,7 +171,7 @@ public class Tokenizer {
         if (Character.isDigit(ch) || ch == '.') {
             if (lastToken != null) {
                 if (lastToken.getType() == Token.TOKEN_NUMBER) {
-                    throw new ExpressionException("Unable to parse char '%s' (Code:%s) at [%s]", ch, (int) ch, pos);
+                    throw new InvalidExpressionException("Unable to parse char '%s' (Code:%s) at [%s]", ch, (int) ch, pos);
                 } else if (implicitMultiplication && (lastToken.getType() != Token.TOKEN_OPERATOR
                     && lastToken.getType() != Token.TOKEN_PARENTHESES_OPEN
                     && lastToken.getType() != Token.TOKEN_FUNCTION
@@ -214,7 +214,7 @@ public class Tokenizer {
             return parseFunctionOrVariable();
         }
 
-        throw new ExpressionException("Unable to parse char '%s' (Code:%s) at [%s]", ch, (int) ch, pos);
+        throw new InvalidExpressionException("Unable to parse char '%s' (Code:%s) at [%s]", ch, (int) ch, pos);
     }
 
     /**

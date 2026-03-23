@@ -1,7 +1,7 @@
 package dev.sbs.api.expression.shuntingyard;
 
 import dev.sbs.api.expression.Expression;
-import dev.sbs.api.expression.exception.ExpressionException;
+import dev.sbs.api.expression.exception.InvalidExpressionException;
 import dev.sbs.api.expression.function.MathFunction;
 import dev.sbs.api.expression.operator.MathOperator;
 import dev.sbs.api.expression.tokenizer.FunctionToken;
@@ -51,7 +51,7 @@ public class ShuntingYard {
      * @param implicitMultiplication {@code true} to enable implicit multiplication
      *     between adjacent operands
      * @return an array of {@link Token} instances ordered in reverse-polish notation
-     * @throws ExpressionException if the expression contains mismatched
+     * @throws InvalidExpressionException if the expression contains mismatched
      *                            parentheses, misplaced separators, or
      *                            unparseable characters
      */
@@ -82,7 +82,7 @@ public class ShuntingYard {
                         output.add(stack.pop());
 
                     if (stack.empty() || stack.peek().getType() != Token.TOKEN_PARENTHESES_OPEN)
-                        throw new ExpressionException("Misplaced function separator ',' or mismatched parentheses");
+                        throw new InvalidExpressionException("Misplaced function separator ',' or mismatched parentheses");
 
                     break;
                 case Token.TOKEN_OPERATOR:
@@ -115,14 +115,14 @@ public class ShuntingYard {
 
                     break;
                 default:
-                    throw new ExpressionException("Unknown Token type encountered. This should not happen");
+                    throw new InvalidExpressionException("Unknown Token type encountered. This should not happen");
             }
         }
 
         while (!stack.empty()) {
             Token t = stack.pop();
             if (t.getType() == Token.TOKEN_PARENTHESES_CLOSE || t.getType() == Token.TOKEN_PARENTHESES_OPEN)
-                throw new ExpressionException("Mismatched parentheses detected. Please check the expression");
+                throw new InvalidExpressionException("Mismatched parentheses detected. Please check the expression");
             else
                 output.add(t);
         }

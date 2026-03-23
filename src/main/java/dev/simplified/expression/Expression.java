@@ -1,6 +1,6 @@
 package dev.sbs.api.expression;
 
-import dev.sbs.api.expression.exception.ExpressionException;
+import dev.sbs.api.expression.exception.InvalidExpressionException;
 import dev.sbs.api.expression.function.BuiltinFunction;
 import dev.sbs.api.expression.function.MathFunction;
 import dev.sbs.api.expression.operator.BuiltinOperator;
@@ -133,7 +133,7 @@ public class Expression {
      * @param name the variable name
      * @param value the value to assign
      * @return this expression for chaining
-     * @throws ExpressionException if {@code name} collides with a registered function
+     * @throws InvalidExpressionException if {@code name} collides with a registered function
      */
     public @NotNull Expression setVariable(final @NotNull String name, final double value) {
         this.checkVariableName(name);
@@ -146,11 +146,11 @@ public class Expression {
      * or user-registered function name.
      *
      * @param name the variable name to check
-     * @throws ExpressionException if a function with the same name exists
+     * @throws InvalidExpressionException if a function with the same name exists
      */
     private void checkVariableName(@NotNull String name) {
         if (this.userFunctionNames.contains(name) || BuiltinFunction.get(name) != null)
-            throw new ExpressionException("The variable name '%s' is invalid. Since there exists a function with the same name", name);
+            throw new InvalidExpressionException("The variable name '%s' is invalid. Since there exists a function with the same name", name);
 
     }
 
@@ -159,7 +159,7 @@ public class Expression {
      *
      * @param variables a map of variable names to their values
      * @return this expression for chaining
-     * @throws ExpressionException if any name collides with a registered function
+     * @throws InvalidExpressionException if any name collides with a registered function
      */
     public @NotNull Expression setVariables(@NotNull Map<String, Double> variables) {
         for (Map.Entry<String, Double> v : variables.entrySet())
@@ -302,11 +302,11 @@ public class Expression {
      * Variables are resolved first from the {@linkplain #getVariables() variable map},
      * and then from the {@linkplain #getVariableProvider() variable provider} if one
      * is set. If a variable cannot be resolved from either source, an
-     * {@link ExpressionException} is thrown.
+     * {@link InvalidExpressionException} is thrown.
      * </p>
      *
      * @return the result of evaluating this expression
-     * @throws ExpressionException if a variable has no assigned value and no
+     * @throws InvalidExpressionException if a variable has no assigned value and no
      *                             provider is set, or if the expression is malformed
      */
     public double evaluate() {
@@ -323,14 +323,14 @@ public class Expression {
                     if (this.variableProvider != null)
                         value = variableProvider.getVariable(name);
                     else
-                        throw new ExpressionException("No value has been set for the setVariable '%s'", name);
+                        throw new InvalidExpressionException("No value has been set for the setVariable '%s'", name);
                 }
 
                 output.push(value);
             } else if (token.getType() == Token.TOKEN_OPERATOR) {
                 OperatorToken op = (OperatorToken) token;
                 if (output.size() < op.getOperator().getNumOperands())
-                    throw new ExpressionException("Invalid number of operands available for '%s' operator", op.getOperator().getSymbol());
+                    throw new InvalidExpressionException("Invalid number of operands available for '%s' operator", op.getOperator().getSymbol());
 
                 if (op.getOperator().getNumOperands() == 2) {
                     /* pop the operands and push the result of the operation */
@@ -347,7 +347,7 @@ public class Expression {
                 final int numArguments = func.getArgumentCount();
 
                 if (numArguments < func.getFunction().getMinArguments() || numArguments > func.getFunction().getMaxArguments() || output.isEmpty())
-                    throw new ExpressionException("Invalid number of arguments available for '%s' function", func.getFunction().getName());
+                    throw new InvalidExpressionException("Invalid number of arguments available for '%s' function", func.getFunction().getName());
 
                 /* collect the arguments from the stack */
                 Double[] args = new Double[numArguments];
@@ -359,7 +359,7 @@ public class Expression {
         }
 
         if (output.size() > 1)
-            throw new ExpressionException("Invalid number of items on the output queue. Might be caused by an invalid number of arguments for a function");
+            throw new InvalidExpressionException("Invalid number of items on the output queue. Might be caused by an invalid number of arguments for a function");
 
         return output.pop();
     }
@@ -507,7 +507,7 @@ public class Expression {
                 else
                     return String.valueOf((long) num);
             default:
-                throw new ExpressionException("The token type '%s' is not supported in this function yet", token.getClass().getName());
+                throw new InvalidExpressionException("The token type '%s' is not supported in this function yet", token.getClass().getName());
         }
     }
 
@@ -610,11 +610,11 @@ public class Expression {
          * Creates a new builder for the given expression string.
          *
          * @param expression the infix expression to parse
-         * @throws ExpressionException if {@code expression} is {@code null} or blank
+         * @throws InvalidExpressionException if {@code expression} is {@code null} or blank
          */
         private Builder(@NotNull String expression) {
             if (expression == null || expression.trim().isEmpty())
-                throw new ExpressionException("Expression can not be empty");
+                throw new InvalidExpressionException("Expression can not be empty");
 
             this.expression = expression;
             this.userOperators = new HashMap<>(4);
@@ -712,7 +712,7 @@ public class Expression {
          *
          * @param operator the operator implementation to register
          * @return this builder for chaining
-         * @throws ExpressionException if the operator symbol contains invalid characters
+         * @throws InvalidExpressionException if the operator symbol contains invalid characters
          */
         public @NotNull Builder operator(@NotNull MathOperator operator) {
             this.checkOperatorSymbol(operator);
@@ -725,14 +725,14 @@ public class Expression {
          * permitted by {@link MathOperator#isAllowedOperatorChar(char)}.
          *
          * @param op the operator to validate
-         * @throws ExpressionException if the symbol contains an invalid character
+         * @throws InvalidExpressionException if the symbol contains an invalid character
          */
         private void checkOperatorSymbol(@NotNull MathOperator op) {
             String name = op.getSymbol();
 
             for (char ch : name.toCharArray()) {
                 if (!MathOperator.isAllowedOperatorChar(ch))
-                    throw new ExpressionException("The operator symbol '%s' is invalid", name);
+                    throw new InvalidExpressionException("The operator symbol '%s' is invalid", name);
             }
         }
 
@@ -741,7 +741,7 @@ public class Expression {
          *
          * @param operators the operator implementations to register
          * @return this builder for chaining
-         * @throws ExpressionException if any operator symbol contains invalid characters
+         * @throws InvalidExpressionException if any operator symbol contains invalid characters
          */
         public @NotNull Builder operator(@NotNull MathOperator... operators) {
             for (MathOperator o : operators)
@@ -755,7 +755,7 @@ public class Expression {
          *
          * @param operators a list of operator implementations to register
          * @return this builder for chaining
-         * @throws ExpressionException if any operator symbol contains invalid characters
+         * @throws InvalidExpressionException if any operator symbol contains invalid characters
          */
         public @NotNull Builder operator(@NotNull List<MathOperator> operators) {
             for (MathOperator o : operators) {
@@ -773,13 +773,13 @@ public class Expression {
          * </p>
          *
          * @return a compiled {@link Expression} ready for variable assignment and evaluation
-         * @throws ExpressionException if the expression is empty, or if a variable name
+         * @throws InvalidExpressionException if the expression is empty, or if a variable name
          *                             conflicts with a built-in or user-defined function
          */
         @Override
         public @NotNull Expression build() {
             if (expression.isEmpty())
-                throw new ExpressionException("The expression can not be empty");
+                throw new InvalidExpressionException("The expression can not be empty");
 
             /* set the constants' variable names */
             variableNames.add("pi");
@@ -790,7 +790,7 @@ public class Expression {
             /* Check if there are duplicate vars/functions */
             for (String var : variableNames) {
                 if (BuiltinFunction.get(var) != null || userFunctions.containsKey(var))
-                    throw new ExpressionException("A variable can not have the same name as a function [%s]", var);
+                    throw new InvalidExpressionException("A variable can not have the same name as a function [%s]", var);
             }
 
             return new Expression(
