@@ -2,7 +2,6 @@ package dev.sbs.api.expression.function;
 
 import dev.sbs.api.expression.Expression;
 import dev.sbs.api.expression.exception.EvaluationException;
-import dev.sbs.api.function.VarargFunction;
 import dev.sbs.api.util.ArrayUtil;
 import dev.sbs.api.util.NumberUtil;
 import lombok.Getter;

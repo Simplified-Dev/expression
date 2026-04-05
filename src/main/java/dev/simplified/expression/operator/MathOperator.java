@@ -1,6 +1,6 @@
 package dev.sbs.api.expression.operator;
 
-import dev.sbs.api.function.VarargFunction;
+import dev.sbs.api.expression.function.VarargFunction;
 import lombok.Getter;
 import org.h2.expression.Expression;
 import org.jetbrains.annotations.NotNull;
@@ -19,7 +19,6 @@ import org.jetbrains.annotations.NotNull;
  *
  * @see BuiltinOperator
  * @see Expression
- * @see Expression.Builder
  */
 @Getter
 public abstract class MathOperator implements VarargFunction<Double, Double> {

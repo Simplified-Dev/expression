@@ -2,7 +2,6 @@ package dev.sbs.api.expression.function;
 
 import dev.sbs.api.expression.Expression;
 import dev.sbs.api.expression.exception.InvalidExpressionException;
-import dev.sbs.api.function.VarargFunction;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

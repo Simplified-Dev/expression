@@ -11,7 +11,6 @@ import dev.sbs.api.expression.tokenizer.NumberToken;
 import dev.sbs.api.expression.tokenizer.OperatorToken;
 import dev.sbs.api.expression.tokenizer.Token;
 import dev.sbs.api.expression.tokenizer.VariableToken;
-import dev.sbs.api.util.builder.ClassBuilder;
 import lombok.Getter;
 import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
@@ -589,7 +588,7 @@ public class Expression {
      * @see MathFunction
      * @see MathOperator
      */
-    public static final class Builder implements ClassBuilder<Expression> {
+    public static final class Builder {
 
         /** The raw infix expression string to be parsed. */
         private final @NotNull String expression;
@@ -776,7 +775,6 @@ public class Expression {
          * @throws InvalidExpressionException if the expression is empty, or if a variable name
          *                             conflicts with a built-in or user-defined function
          */
-        @Override
         public @NotNull Expression build() {
             if (expression.isEmpty())
                 throw new InvalidExpressionException("The expression can not be empty");
