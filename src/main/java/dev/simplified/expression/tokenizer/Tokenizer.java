@@ -1,14 +1,14 @@
-package dev.sbs.api.expression.tokenizer;
+package dev.simplified.expression.tokenizer;
 
-import dev.sbs.api.expression.Expression;
-import dev.sbs.api.expression.exception.InvalidExpressionException;
-import dev.sbs.api.expression.exception.UnknownFunctionException;
-import dev.sbs.api.expression.exception.UnknownOperatorException;
-import dev.sbs.api.expression.function.BuiltinFunction;
-import dev.sbs.api.expression.function.MathFunction;
-import dev.sbs.api.expression.operator.BuiltinOperator;
-import dev.sbs.api.expression.operator.MathOperator;
-import dev.sbs.api.expression.shuntingyard.ShuntingYard;
+import dev.simplified.expression.Expression;
+import dev.simplified.expression.exception.InvalidExpressionException;
+import dev.simplified.expression.exception.UnknownFunctionException;
+import dev.simplified.expression.exception.UnknownOperatorException;
+import dev.simplified.expression.function.BuiltinFunction;
+import dev.simplified.expression.function.MathFunction;
+import dev.simplified.expression.operator.BuiltinOperator;
+import dev.simplified.expression.operator.MathOperator;
+import dev.simplified.expression.shuntingyard.ShuntingYard;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

@@ -1,4 +1,4 @@
-package dev.sbs.api.expression.tokenizer;
+package dev.simplified.expression.tokenizer;
 
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;

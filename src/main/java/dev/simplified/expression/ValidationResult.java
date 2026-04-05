@@ -1,4 +1,4 @@
-package dev.sbs.api.expression;
+package dev.simplified.expression;
 
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;

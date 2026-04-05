@@ -1,4 +1,4 @@
-package dev.sbs.api.expression.function;
+package dev.simplified.expression.function;
 
 import java.util.Objects;
 

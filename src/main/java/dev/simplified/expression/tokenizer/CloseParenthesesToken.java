@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.sbs.api.expression.tokenizer;
+package dev.simplified.expression.tokenizer;
 
 /**
  * Token representing a close parenthesis, bracket, or brace in a mathematical expression.
  * <p>
  * The {@link Tokenizer} emits this token when it encounters a {@code ')'},
  * {@code ']'}, or {@code '}'} character. All three variants are treated
- * identically by the {@link dev.sbs.api.expression.shuntingyard.ShuntingYard ShuntingYard}
+ * identically by the {@link dev.simplified.expression.shuntingyard.ShuntingYard ShuntingYard}
  * algorithm.
  *
  * @see Token#TOKEN_PARENTHESES_CLOSE

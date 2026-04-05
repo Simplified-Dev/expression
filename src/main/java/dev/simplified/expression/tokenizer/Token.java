@@ -1,7 +1,7 @@
-package dev.sbs.api.expression.tokenizer;
+package dev.simplified.expression.tokenizer;
 
-import dev.sbs.api.expression.Expression;
-import dev.sbs.api.expression.shuntingyard.ShuntingYard;
+import dev.simplified.expression.Expression;
+import dev.simplified.expression.shuntingyard.ShuntingYard;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 

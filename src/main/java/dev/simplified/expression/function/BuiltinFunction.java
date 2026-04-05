@@ -1,9 +1,9 @@
-package dev.sbs.api.expression.function;
+package dev.simplified.expression.function;
 
-import dev.sbs.api.expression.Expression;
-import dev.sbs.api.expression.exception.EvaluationException;
-import dev.sbs.api.util.ArrayUtil;
-import dev.sbs.api.util.NumberUtil;
+import dev.simplified.expression.Expression;
+import dev.simplified.expression.exception.EvaluationException;
+import dev.simplified.util.ArrayUtil;
+import dev.simplified.util.NumberUtil;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

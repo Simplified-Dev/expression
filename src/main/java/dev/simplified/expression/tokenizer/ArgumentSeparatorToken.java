@@ -1,4 +1,4 @@
-package dev.sbs.api.expression.tokenizer;
+package dev.simplified.expression.tokenizer;
 
 /**
  * Token representing a function argument separator (the comma character) in a
@@ -6,7 +6,7 @@ package dev.sbs.api.expression.tokenizer;
  * <p>
  * When the {@link Tokenizer} encounters a {@code ','} character, it produces
  * an instance of this token. The
- * {@link dev.sbs.api.expression.shuntingyard.ShuntingYard ShuntingYard} algorithm
+ * {@link dev.simplified.expression.shuntingyard.ShuntingYard ShuntingYard} algorithm
  * uses it to delimit successive arguments within a function call and to
  * increment the argument count on the enclosing {@link FunctionToken}.
  *

@@ -1,4 +1,4 @@
-package dev.sbs.api.expression.tokenizer;
+package dev.simplified.expression.tokenizer;
 
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
  * <p>
  * Variable names are resolved by the {@link Tokenizer} against a caller-supplied
  * set of known variable names. At evaluation time the
- * {@link dev.sbs.api.expression.Expression Expression} substitutes the variable's
+ * {@link dev.simplified.expression.Expression Expression} substitutes the variable's
  * current value.
  *
  * @see Token#TOKEN_VARIABLE

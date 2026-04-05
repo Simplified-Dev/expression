@@ -1,8 +1,8 @@
-package dev.sbs.api.expression.exception;
+package dev.simplified.expression.exception;
 
-import dev.sbs.api.expression.Expression;
-import dev.sbs.api.expression.shuntingyard.ShuntingYard;
-import dev.sbs.api.expression.tokenizer.Tokenizer;
+import dev.simplified.expression.Expression;
+import dev.simplified.expression.shuntingyard.ShuntingYard;
+import dev.simplified.expression.tokenizer.Tokenizer;
 import org.intellij.lang.annotations.PrintFormat;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

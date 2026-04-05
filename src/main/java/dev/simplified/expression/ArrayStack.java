@@ -1,6 +1,6 @@
-package dev.sbs.api.expression;
+package dev.simplified.expression;
 
-import dev.sbs.api.expression.exception.InvalidExpressionException;
+import dev.simplified.expression.exception.InvalidExpressionException;
 
 /**
  * A lightweight stack of primitive {@code double} values backed by a resizable array.

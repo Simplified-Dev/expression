@@ -1,7 +1,7 @@
-package dev.sbs.api.expression.operator;
+package dev.simplified.expression.operator;
 
-import dev.sbs.api.expression.Expression;
-import dev.sbs.api.expression.exception.EvaluationException;
+import dev.simplified.expression.Expression;
+import dev.simplified.expression.exception.EvaluationException;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

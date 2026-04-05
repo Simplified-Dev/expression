@@ -1,6 +1,6 @@
-package dev.sbs.api.expression.exception;
+package dev.simplified.expression.exception;
 
-import dev.sbs.api.expression.tokenizer.Tokenizer;
+import dev.simplified.expression.tokenizer.Tokenizer;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 

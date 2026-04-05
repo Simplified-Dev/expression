@@ -1,13 +1,13 @@
-package dev.sbs.api.expression.shuntingyard;
+package dev.simplified.expression.shuntingyard;
 
-import dev.sbs.api.expression.Expression;
-import dev.sbs.api.expression.exception.InvalidExpressionException;
-import dev.sbs.api.expression.function.MathFunction;
-import dev.sbs.api.expression.operator.MathOperator;
-import dev.sbs.api.expression.tokenizer.FunctionToken;
-import dev.sbs.api.expression.tokenizer.OperatorToken;
-import dev.sbs.api.expression.tokenizer.Token;
-import dev.sbs.api.expression.tokenizer.Tokenizer;
+import dev.simplified.expression.Expression;
+import dev.simplified.expression.exception.InvalidExpressionException;
+import dev.simplified.expression.function.MathFunction;
+import dev.simplified.expression.operator.MathOperator;
+import dev.simplified.expression.tokenizer.FunctionToken;
+import dev.simplified.expression.tokenizer.OperatorToken;
+import dev.simplified.expression.tokenizer.Token;
+import dev.simplified.expression.tokenizer.Tokenizer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

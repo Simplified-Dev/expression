@@ -1,6 +1,6 @@
-package dev.sbs.api.expression.tokenizer;
+package dev.simplified.expression.tokenizer;
 
-import dev.sbs.api.expression.operator.MathOperator;
+import dev.simplified.expression.operator.MathOperator;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
  * <p>
  * Each operator token wraps a {@link MathOperator} that defines the operator's
  * symbol, precedence, associativity, and number of operands. The
- * {@link dev.sbs.api.expression.shuntingyard.ShuntingYard ShuntingYard} algorithm
+ * {@link dev.simplified.expression.shuntingyard.ShuntingYard ShuntingYard} algorithm
  * uses these properties to correctly order operators when converting from
  * infix to reverse-polish notation.
  *

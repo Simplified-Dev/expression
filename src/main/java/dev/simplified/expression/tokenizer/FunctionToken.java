@@ -1,6 +1,6 @@
-package dev.sbs.api.expression.tokenizer;
+package dev.simplified.expression.tokenizer;
 
-import dev.sbs.api.expression.function.MathFunction;
+import dev.simplified.expression.function.MathFunction;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
  * Each function token wraps a {@link MathFunction} instance and tracks the
  * number of arguments that have been parsed for it. The argument count starts
  * at {@code 1} (for a single-argument call) and is incremented by the
- * {@link dev.sbs.api.expression.shuntingyard.ShuntingYard ShuntingYard} algorithm
+ * {@link dev.simplified.expression.shuntingyard.ShuntingYard ShuntingYard} algorithm
  * each time an {@link ArgumentSeparatorToken} is encountered within the
  * function's parenthesized argument list.
  *

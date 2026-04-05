@@ -1,8 +1,7 @@
-package dev.sbs.api.expression.operator;
+package dev.simplified.expression.operator;
 
-import dev.sbs.api.expression.function.VarargFunction;
+import dev.simplified.expression.function.VarargFunction;
 import lombok.Getter;
-import org.h2.expression.Expression;
 import org.jetbrains.annotations.NotNull;
 
 /**

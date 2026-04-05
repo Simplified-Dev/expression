@@ -1,4 +1,4 @@
-package dev.sbs.api.expression;
+package dev.simplified.expression;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

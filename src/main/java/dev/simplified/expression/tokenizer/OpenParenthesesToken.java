@@ -1,6 +1,6 @@
-package dev.sbs.api.expression.tokenizer;
+package dev.simplified.expression.tokenizer;
 
-import dev.sbs.api.expression.shuntingyard.ShuntingYard;
+import dev.simplified.expression.shuntingyard.ShuntingYard;
 
 /**
  * Token representing an open parenthesis, bracket, or brace in a mathematical expression.

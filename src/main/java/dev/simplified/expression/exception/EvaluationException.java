@@ -1,7 +1,7 @@
-package dev.sbs.api.expression.exception;
+package dev.simplified.expression.exception;
 
-import dev.sbs.api.expression.function.BuiltinFunction;
-import dev.sbs.api.expression.operator.BuiltinOperator;
+import dev.simplified.expression.function.BuiltinFunction;
+import dev.simplified.expression.operator.BuiltinOperator;
 import org.intellij.lang.annotations.PrintFormat;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
